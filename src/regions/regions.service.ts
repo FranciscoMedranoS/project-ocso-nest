@@ -1,4 +1,9 @@
-import {BadRequestException, Injectable, NotFoundException,} from "@nestjs/common";import { CreateRegionDto } from "./dto/create-region.dto";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
+import { CreateRegionDto } from "./dto/create-region.dto";
 import { UpdateRegionDto } from "./dto/update-region.dto";
 import { Repository } from "typeorm";
 import { Region } from "./entities/region.entity";
