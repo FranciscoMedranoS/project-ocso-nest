@@ -5,10 +5,12 @@ import { AppService } from "./app.service";
 import { EmployeesModule } from "./employees/employees.module";
 import { ProductsModule } from "./products/products.module";
 import { ConfigModule } from "@nestjs/config";
-import { ProviderModule } from './provider/provider.module';
-import { ManagersModule } from './managers/managers.module';
-import { LocationsModule } from './locations/locations.module';
-import { RegionsModule } from './regions/regions.module';
+import { ManagersModule } from "./managers/managers.module";
+import { LocationsModule } from "./locations/locations.module";
+import { RegionsModule } from "./regions/regions.module";
+import { AuthModule } from "./auth/auth.module";
+import { ProvidersModule } from "./provider/provider.module";
+
 
 @Module({
   imports: [
@@ -26,12 +28,13 @@ import { RegionsModule } from './regions/regions.module';
     }),
     EmployeesModule,
     ProductsModule,
-    ProviderModule,
+    ProvidersModule,
     ManagersModule,
     LocationsModule,
     RegionsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {}

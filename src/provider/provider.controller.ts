@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseGuards } from '@nestjs/common';
 import { ProviderService } from './provider.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('provider')
-export class ProviderController {
+export class ProvidersController {
   constructor(private readonly providersService: ProviderService) {}
 
   @Post()
@@ -24,8 +26,8 @@ export class ProviderController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    const provider = this.providersService.findOne(id);
-    if(!provider) throw new NotFoundException()
+    const provider =  this.providersService.findOne(id);
+    if (!provider) throw new NotFoundException()
     return provider
   }
 
