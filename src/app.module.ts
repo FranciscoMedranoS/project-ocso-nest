@@ -10,7 +10,8 @@ import { LocationsModule } from "./locations/locations.module";
 import { RegionsModule } from "./regions/regions.module";
 import { AuthModule } from "./auth/auth.module";
 import { ProvidersModule } from "./provider/provider.module";
-
+import { JwtModule } from "@nestjs/jwt";
+import { EXPIRES_IN, JWT_KEY } from "./auth/constants/jwt.constants";
 
 @Module({
   imports: [
