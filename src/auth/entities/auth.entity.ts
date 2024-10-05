@@ -8,7 +8,9 @@ export class User {
   userId: string;
   @Column("text")
   userEmail: string;
-  @Column("text")
+  @Column("text",{
+    unique: true,
+  })
   userPassword: string;
   @Column('simple-array',{
     default: ["Employee"]
