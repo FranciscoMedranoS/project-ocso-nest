@@ -2,14 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, U
 import { ProviderService } from './provider.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { UserData } from 'src/auth/decorators/user.decorators';
 import { User } from 'src/auth/entities/auth.entity';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { RolesGuard } from 'src/auth/guard/roles.guard';
+import { Auth } from 'src/auth/decorators/auth.decorator';
 
 
-@UseGuards(AuthGuard)
 @Controller('provider')
 export class ProvidersController {
   constructor(private readonly providersService: ProviderService) {}
@@ -19,8 +16,7 @@ export class ProvidersController {
     return this.providersService.create(createProviderDto);
   }
 
-  @UseGuards(RolesGuard)
-  @Roles(["Admin"])
+  @Auth("Empleyee")
   @Get()
   findAll(@UserData() user: User) {
     if(!user.userRoles.includes("Employee")) throw new UnauthorizedException("No esta autorizado, solo Admins y managers")
