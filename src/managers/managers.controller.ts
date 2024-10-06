@@ -14,12 +14,25 @@ import { Auth } from "src/auth/decorators/auth.decorator";
 import { audit } from "rxjs";
 import { ROLES } from "src/auth/constants/roles.constants";
 import { ApiAuth } from "src/auth/decorators/api.decorator";
+import { ApiTags } from "@nestjs/swagger";
+import { ApiResponse } from "@nestjs/swagger";
+import { Manager } from "./entities/manager.entity";
 
 @ApiAuth()
+@ApiTags('Managers')
 @Controller("managers")
 export class ManagersController {
   constructor(private readonly managersService: ManagersService) {}
-
+  @ApiResponse({
+    status: 201,
+    example:{
+      managerId: "UUID",
+      managerFullName: "Karlo Paz",
+      managerSalary: "$18000",
+      managerEmail: "karlo@gmial.com",
+      managerPhoneNumber: "4421473043",
+    } as unknown as Manager
+  })
   @Auth()
   @Post()
   create(@Body() createManagerDto: CreateManagerDto) {
