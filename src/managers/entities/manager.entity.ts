@@ -1,4 +1,4 @@
-import { User } from "src/auth/entities/auth.entity";
+import { User } from "src/auth/entities/user.entity";
 import { Location } from "src/locations/entities/location.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
