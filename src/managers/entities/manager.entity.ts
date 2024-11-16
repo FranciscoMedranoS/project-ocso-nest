@@ -21,7 +21,7 @@ export class Manager {
   @ApiProperty({
     default: "karlo@gmial.com"
   })
-  @Column("text",{
+  @Column("text", {
     unique: true,
   })
   managerEmail: string;
@@ -34,12 +34,12 @@ export class Manager {
 
   @OneToOne(() => Location)
   @JoinColumn({
-    name : "locationId"
+    name: "locationId"
   })
-  location: Location;
+  location: Location | string;
 
 
-  @OneToOne(()=> User)
+  @OneToOne(() => User)
   @JoinColumn({
     name: "userId"
   })

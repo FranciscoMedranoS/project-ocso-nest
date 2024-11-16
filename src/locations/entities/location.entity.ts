@@ -38,6 +38,7 @@ export class Location {
   @OneToOne(() => Manager,{
     eager: true,
   })
+  
   @JoinColumn({
     name: "ManagerId",
   })
