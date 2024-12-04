@@ -8,6 +8,7 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { ROLES } from 'src/auth/constants/roles.constants';
 import { ApiAuth } from 'src/auth/decorators/api.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @ApiAuth()
 @ApiTags('Providers')
@@ -21,13 +22,12 @@ export class ProvidersController {
     return this.providersService.create(createProviderDto);
   }
 
-  @Auth(ROLES.EMPLOYEE, ROLES.MANAGER)
+  @Auth(ROLES.ADMIN, ROLES.MANAGER)
   @Get()
-  findAll(@UserData() user: User) {
-    if(!user.userRoles.includes("Employe")) throw new UnauthorizedException("No esta autorizado, solo Admins y managers")
+  findAll() {
     return this.providersService.findAll();
   }
-
+  
   @Auth(ROLES.EMPLOYEE, ROLES.MANAGER)
   @Get('/name/:name')
   findByName(@Param('name') name: string){
